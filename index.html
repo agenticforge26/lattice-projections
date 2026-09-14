@@ -464,10 +464,12 @@
       currentIndex = filteredIndex;
       updateModalContent();
       document.getElementById('carouselModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     }
 
     function closeCarousel() {
       document.getElementById('carouselModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
     }
 
     function updateModalContent() {
