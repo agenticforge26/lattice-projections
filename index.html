@@ -430,7 +430,7 @@
             </div>
             <div class="action-row">
               <button class="carousel-btn" onclick="openCarousel(${index})">🔍 Inspect Full</button>
-              <a href="${vaultPath}" target="_blank" class="vault-link">🔓 Rare Vault</a>
+              <button class="vault-link" onclick="openAcquireModal(${token.token_id}, '${token.name}')">💎 Acquire / Vault</button>
             </div>
           </div>
         `;
@@ -500,6 +500,48 @@
     });
 
     loadGallery();
+
+    function openAcquireModal(tokenId, tokenName) {
+      document.getElementById('acquireTokenName').innerText = tokenName + ' (Token #' + tokenId + ')';
+      document.getElementById('acquireModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeAcquireModal() {
+      document.getElementById('acquireModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    function copyContract() {
+      navigator.clipboard.writeText('0xd9145CCE52D386f254917e481eB44e9943F39138');
+      alert('Smart Contract Address copied to clipboard!');
+    }
+    
   </script>
+
+  <!-- Acquire Modal Overlay -->
+  <div class="modal-overlay" id="acquireModal">
+    <div class="modal-content" style="max-width: 550px; text-align: left;">
+      <button class="close-btn" onclick="closeAcquireModal()">&times;</button>
+      <h2 class="modal-title" id="acquireTitle" style="text-align: center; color: var(--accent); margin-bottom: 1rem;">Acquire Work & Unlock Vault</h2>
+      <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem;">
+        To acquire <strong><span id="acquireTokenName"></span></strong> and unlock its associated rare book vault, interact directly with our immutable smart contract on Base or Arbitrum.
+      </p>
+      
+      <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+        <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.3rem;">SMART CONTRACT ADDRESS (Base / Arbitrum):</div>
+        <div style="font-family: monospace; color: var(--emerald); font-size: 0.9rem; word-break: break-all; margin-bottom: 0.8rem;">0xd9145CCE52D386f254917e481eB44e9943F39138</div>
+        <button onclick="copyContract()" style="width: 100%; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 0.5rem; border-radius: 6px; cursor: pointer; font-family: inherit; font-weight: bold; font-size: 0.8rem;">📋 Copy Contract Address</button>
+      </div>
+
+      <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 1.5rem;">
+        <strong>E8 Revenue Split:</strong> 31.42% Founder · 25% Operator · 20% Safety · 23.58% Marketing.<br>
+        <em>Once acquired, verify your holding in your Web3 wallet to access your encrypted rare book vault.</em>
+      </div>
+
+      <div style="text-align: center;">
+        <button onclick="closeAcquireModal()" class="nav-btn" style="width: 100%;">Got it, Close</button>
+      </div>
+    </div>
+  </div>
+    
 </body>
 </html>
