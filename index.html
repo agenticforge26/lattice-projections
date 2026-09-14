@@ -403,8 +403,8 @@
       grid.innerHTML = '';
 
       tokens.forEach((token, index) => {
-        let imgPath = '../../' + token.image_master;
-        let vaultPath = '../../' + token.unlockable_vault[0];
+        let imgPath = './' + token.image_master;
+        let vaultPath = './' + token.unlockable_vault[0];
         
         let tierClass = 'tier-B';
         if (token.tier === 'S') tierClass = 'tier-S';
@@ -417,7 +417,7 @@
         card.innerHTML = `
           <div class="nft-img-wrapper" onclick="openCarousel(${index})">
             <span class="tier-badge ${tierClass}">Tier ${token.tier}</span>
-            <img src="${imgPath}" alt="${token.name}" loading="lazy" onerror="this.src='../../artifacts/media/nft_collection/02_masters/Pearlpano4.jpg'">
+            <img src="${imgPath}" alt="${token.name}" loading="lazy" onerror="this.src='artifacts/media/nft_collection/02_masters/Pearlpano4.jpg'">
           </div>
           <div class="nft-content">
             <h3 class="nft-title">${token.name}</h3>
@@ -470,7 +470,7 @@
 
     function updateModalContent() {
       const token = currentFiltered[currentIndex];
-      document.getElementById('modalImg').src = '../../' + token.image_master;
+      document.getElementById('modalImg').src = './' + token.image_master;
       document.getElementById('modalTitle').innerText = token.name + ` (Token #${token.token_id})`;
       document.getElementById('modalDesc').innerText = `${token.description} | Trait: ${token.attributes[1].value}`;
       document.getElementById('modalCounter').innerText = `${currentIndex + 1} / ${currentFiltered.length}`;
