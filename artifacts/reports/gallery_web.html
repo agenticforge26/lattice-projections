@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lattice Projections — E8 Virtual Salon & Gallery (Protected)</title>
+  <style>
+    :root {
+      --bg: #030712;
+      --card-bg: #0f172a;
+      --border: #1e293b;
+      --accent: #38bdf8;
+      --emerald: #34d399;
+      --gold: #fbbf24;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace, sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    header {
+      background: linear-gradient(to bottom, #0f172a, #030712);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    header h1 {
+      color: var(--accent);
+      font-size: 2.2rem;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: 1px;
+    }
+    header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto 1.5rem auto;
+      line-height: 1.5;
+    }
+    .contract-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid var(--accent);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: rgba(15, 23, 42, 0.5);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent);
+      color: #030712;
+      border-color: var(--accent);
+      font-weight: bold;
+    }
+    .gallery-container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .nft-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+    .nft-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px -10px rgba(56, 189, 248, 0.3);
+      border-color: var(--accent);
+    }
+    .nft-img-wrapper {
+      width: 100%;
+      height: 280px;
+      background: #000;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .nft-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      pointer-events: none;
+    }
+    .nft-card:hover .nft-img-wrapper img {
+      transform: scale(1.03);
+    }
+    .tier-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 20;
+    }
+    .tier-S { background: #fbbf24; color: #030712; }
+    .tier-A { background: #38bdf8; color: #030712; }
+    .tier-B { background: #34d399; color: #030712; }
+    .tier-C { background: #94a3b8; color: #030712; }
+
+    .nft-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .nft-title {
+      font-size: 1.05rem;
+      font-weight: bold;
+      margin: 0 0 0.5rem 0;
+      color: var(--text);
+    }
+    .nft-artist {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .nft-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: rgba(30, 41, 59, 0.5);
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .nft-meta div {
+      margin-bottom: 0.3rem;
+    }
+    .nft-meta div:last-child {
+      margin-bottom: 0;
+    }
+    .action-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+    .vault-link, .carousel-btn {
+      flex: 1;
+      display: inline-block;
+      text-align: center;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid var(--emerald);
+      color: var(--emerald);
+      padding: 0.6rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .vault-link:hover, .carousel-btn:hover {
+      background: var(--emerald);
+      color: #030712;
+    }
+    .carousel-btn {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .carousel-btn:hover {
+      background: var(--accent);
+      color: #030712;
+    }
+
+    /* Modal / Carousel Overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(3, 7, 18, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(10px);
+    }
+    .modal-content {
+      position: relative;
+      max-width: 900px;
+      width: 90%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    }
+    .modal-img-container {
+      width: 100%;
+      height: 450px;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .modal-img-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+    }
+    .watermark {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(3, 7, 18, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--text-muted);
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      z-index: 20;
+      pointer-events: none;
+    }
+    .modal-title {
+      font-size: 1.4rem;
+      color: var(--text);
+      margin: 0 0 0.5rem 0;
+    }
+    .modal-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .modal-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-btn {
+      background: var(--border);
+      color: var(--text);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+    }
+    .nav-btn:hover {
+      background: var(--accent);
+      color: #030712;
+    }
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    .close-btn:hover {
+      color: var(--text);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      background: #020617;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🏛️ THE LATTICE PROJECTIONS</h1>
+    <p>An autonomous hybrid-media collection of 67 works by Laura Curtiss, bridging human analog photography and painting with E8 quasi-crystal geometry and encrypted rare book vaults.</p>
+    <div class="contract-badge">
+      ⛓️ Smart Contract: <strong>0xd9145CCE52D386f254917e481eB44e9943F39138</strong> (Base / Arbitrum)
+    </div>
+  </header>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterGallery('all', event)">All Works (67)</button>
+    <button class="filter-btn" onclick="filterGallery('genesis', event)">Genesis / Tier S (9)</button>
+    <button class="filter-btn" onclick="filterGallery('temporal_torsion', event)">Temporal Torsion (10)</button>
+    <button class="filter-btn" onclick="filterGallery('observer', event)">The Observer (8)</button>
+    <button class="filter-btn" onclick="filterGallery('hand_of_the_artist', event)">Hand of the Artist & Archive</button>
+  </div>
+
+  <div class="gallery-container" id="galleryGrid">
+    <!-- Cards injected via script -->
+  </div>
+
+  <!-- Carousel Modal Overlay -->
+  <div class="modal-overlay" id="carouselModal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeCarousel()">&times;</button>
+      <div class="modal-img-container">
+        <img id="modalImg" src="" alt="Gallery Master">
+        <div class="watermark">© LAURA CURTISS · E8 LATTICE PROJECTIONS</div>
+      </div>
+      <h2 class="modal-title" id="modalTitle">Artwork Title</h2>
+      <div class="modal-desc" id="modalDesc">Metadata description goes here.</div>
+      <div class="modal-controls">
+        <button class="nav-btn" onclick="prevImage()">&#8592; Previous</button>
+        <span id="modalCounter" style="color: var(--text-muted); font-size: 0.85rem;">1 / 69</span>
+        <button class="nav-btn" onclick="nextImage()">Next &#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>EOLT Lattice Collective · E8 Symmetrical Decay Revenue Split (31.42% Founder · 25% Operator · 20% Safety · 23.58% Marketing)</p>
+  </footer>
+
+  <script>
+    // Embedded Collection Data
+    const COLLECTION_EMBEDDED = {"collection_name": "The Lattice Projections", "artist": "Laura Curtiss", "platform_target": "MoltBook", "revenue_split": {"founder": 0.3142, "operator": 0.25, "safety_treasury": 0.2, "marketing": 0.2358}, "tokens": [{"token_id": 100, "name": "The Torn Planet", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/Pearlpano4.jpg", "description": "360 stereographic, B&W, light trails. Human-created work by Laura Curtiss.", "drop": "genesis", "tier": "S", "attributes": [{"trait_type": "Series", "value": "circular_projection"}, {"trait_type": "EOLT Trait", "value": "E8 Stereographic Projection + Torsion Trails"}, {"trait_type": "Tier", "value": "S"}, {"trait_type": "Technique", "value": "360 stereographic, B&W, light trails"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 101, "name": "Civic Planet", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/ablegr.jpg", "description": "360 stereographic tiny-planet, B&W. Human-created work by Laura Curtiss.", "drop": "genesis", "tier": "S", "attributes": [{"trait_type": "Series", "value": "circular_projection"}, {"trait_type": "EOLT Trait", "value": "E8 Stereographic Projection"}, {"trait_type": "Tier", "value": "S"}, {"trait_type": "Technique", "value": "360 stereographic tiny-planet, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 102, "name": "Vortex Summit", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/panomount.jpg", "description": "360 pano + radial spin blur, B&W. Human-created work by Laura Curtiss.", "drop": "genesis", "tier": "S", "attributes": [{"trait_type": "Series", "value": "circular_projection"}, {"trait_type": "EOLT Trait", "value": "E8 Projection + Rotational Torsion"}, {"trait_type": "Tier", "value": "S"}, {"trait_type": "Technique", "value": "360 pano + radial spin blur, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 103, "name": "Sepia Vortex (Jasper)", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/jasper-1.jpg", "description": "360 pano + spin, painterly sepia. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "circular_projection"}, {"trait_type": "EOLT Trait", "value": "E8 Projection + Fractal Texture"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "360 pano + spin, painterly sepia"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 104, "name": "The Globe (City Hall)", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/ndpglobe.jpg", "description": "360 stereographic, sepia antique. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "circular_projection"}, {"trait_type": "EOLT Trait", "value": "E8 Stereographic Projection"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "360 stereographic, sepia antique"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 105, "name": "Tunnel of Sky (Slave Lake)", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/Slave_Lake.jpg", "description": "360 stereographic, color, nature. Human-created work by Laura Curtiss.", "drop": "hand_of_the_artist_archive", "tier": "C", "attributes": [{"trait_type": "Series", "value": "circular_projection"}, {"trait_type": "EOLT Trait", "value": "E8 Projection / Zenith Tunnel"}, {"trait_type": "Tier", "value": "C"}, {"trait_type": "Technique", "value": "360 stereographic, color, nature"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 106, "name": "Spiral Oculus", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_1080.jpg", "description": "interior dome warped to vortex, B&W. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "circular_projection"}, {"trait_type": "EOLT Trait", "value": "E8 Projection / Architectural Vortex"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "interior dome warped to vortex, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 107, "name": "The Crowd Singularity", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_1095.jpg", "description": "fisheye crowd converging on void, sepia. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "circular_projection"}, {"trait_type": "EOLT Trait", "value": "Carbon-12 Eigenstate / Human Lattice"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "fisheye crowd converging on void, sepia"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 108, "name": "Supermoon Over the Bridge", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/supermoon_(4_of_4).jpg", "description": "night long exposure, warm city + moon. Human-created work by Laura Curtiss.", "drop": "genesis", "tier": "S", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Temporal Integration / Lattice Pulse"}, {"trait_type": "Tier", "value": "S"}, {"trait_type": "Technique", "value": "night long exposure, warm city + moon"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 109, "name": "Blue Hour Arteries", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/_MG_2901.jpg", "description": "tripod long exposure, traffic trails, winter. Human-created work by Laura Curtiss.", "drop": "genesis", "tier": "S", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Temporal Torsion / Flow Lines"}, {"trait_type": "Tier", "value": "S"}, {"trait_type": "Technique", "value": "tripod long exposure, traffic trails, winter"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 110, "name": "Zoom Burst Mandala", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/lights-1_(2).jpg", "description": "zoom burst, radial streaks, B&W. Human-created work by Laura Curtiss.", "drop": "genesis", "tier": "S", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Radial Torsion Field"}, {"trait_type": "Tier", "value": "S"}, {"trait_type": "Technique", "value": "zoom burst, radial streaks, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 111, "name": "Six-Pointed Burst", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/untitled-5.jpg", "description": "radial zoom blur, signed, B&W. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Torsion Duality / Star Defect"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "radial zoom blur, signed, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 112, "name": "Bridge Vortex", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/untitled-13.jpg", "description": "long exposure swirl, signed, B&W. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Asymmetric Torsion Flow"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "long exposure swirl, signed, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 113, "name": "The Smoke Angel", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/untitled-15.jpg", "description": "long exposure smoke/light, signed, B&W. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Form / Pareidolia Phase"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "long exposure smoke/light, signed, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 114, "name": "Wave Sky Over Calgary", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/sky-1.jpg", "description": "long exposure cloud waves, color night. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Atmospheric Torsion Waves"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "long exposure cloud waves, color night"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 115, "name": "The Melting City", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/sky-5.jpg", "description": "vertical pan blur cityscape, B&W. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Vertical Phase Smear"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "vertical pan blur cityscape, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 116, "name": "Skeleton City", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/sky-6.jpg", "description": "edge-detect stylized night skyline, B&W. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Lattice Wireframe"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "edge-detect stylized night skyline, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 117, "name": "Purple Span", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/land.jpg", "description": "tripod long exposure, purple bridge, color. Human-created work by Laura Curtiss.", "drop": "hand_of_the_artist_archive", "tier": "C", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Reflection Symmetry / Flow"}, {"trait_type": "Tier", "value": "C"}, {"trait_type": "Technique", "value": "tripod long exposure, purple bridge, color"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 118, "name": "Sketch of a City", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/TRY_THIS.jpg", "description": "long exposure + edge filter, B&W. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Lattice Extraction"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "long exposure + edge filter, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 119, "name": "Rain Grid", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/bw-11.jpg", "description": "rain-blur abstraction, signed, B&W. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Stochastic Torsion / Grid Decay"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "rain-blur abstraction, signed, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 120, "name": "The Orb", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/bw-120.jpg", "description": "light painting on sphere, signed, B&W. Human-created work by Laura Curtiss.", "drop": "genesis", "tier": "S", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Weyl Curvature Sphere"}, {"trait_type": "Tier", "value": "S"}, {"trait_type": "Technique", "value": "light painting on sphere, signed, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 121, "name": "Ghost in the Orbits", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/bw-182.jpg", "description": "light painting circles + figure, signed, B&W. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Observer in the Field"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "light painting circles + figure, signed, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 122, "name": "Feather Vortex", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/bw-191.jpg", "description": "zoom burst radial, B&W. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Radial Torsion Field"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "zoom burst radial, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 123, "name": "Streak Cloud City", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/light-185.jpg", "description": "long exposure clouds + starbursts, B&W. Human-created work by Laura Curtiss.", "drop": "hand_of_the_artist_archive", "tier": "C", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Temporal Cloud Shear"}, {"trait_type": "Tier", "value": "C"}, {"trait_type": "Technique", "value": "long exposure clouds + starbursts, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 124, "name": "Rail and River", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/light-223.jpg", "description": "night river/bridges, grain, signed, B&W. Human-created work by Laura Curtiss.", "drop": "hand_of_the_artist_archive", "tier": "C", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Reflection Lattice"}, {"trait_type": "Tier", "value": "C"}, {"trait_type": "Technique", "value": "night river/bridges, grain, signed, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 125, "name": "Balcony Night", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/light-1.jpg", "description": "night city from balcony, B&W. Human-created work by Laura Curtiss.", "drop": "hand_of_the_artist_archive", "tier": "C", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Observer Vantage"}, {"trait_type": "Tier", "value": "C"}, {"trait_type": "Technique", "value": "night city from balcony, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 126, "name": "Moonbreak Bridge", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/_MG_8754.jpg", "description": "night long exposure, moon through cloud, B&W. Human-created work by Laura Curtiss.", "drop": "hand_of_the_artist_archive", "tier": "C", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Lunar Phase Offset"}, {"trait_type": "Tier", "value": "C"}, {"trait_type": "Technique", "value": "night long exposure, moon through cloud, B&W"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 127, "name": "Nautilus Energy", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_02-01-15_09-33-18.jpg", "description": "light painting on spiral shell, purple duotone. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Golden Spiral / Fibonacci Lattice"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "light painting on spiral shell, purple duotone"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 128, "name": "The Light Mandala", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2333.jpg", "description": "light-fiber mandala, rainbow diffraction. Human-created work by Laura Curtiss.", "drop": "genesis", "tier": "S", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Sacred Geometry Core / E8 Root Bloom"}, {"trait_type": "Tier", "value": "S"}, {"trait_type": "Technique", "value": "light-fiber mandala, rainbow diffraction"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 129, "name": "Canopy Rush", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2768.jpg", "description": "intentional camera movement, forest, color. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Organic Phase Smear"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "intentional camera movement, forest, color"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 130, "name": "The Accretion Eye", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2788.jpg", "description": "swirl abstraction resembling black hole, green. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Event Horizon / Torsion Ring"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "swirl abstraction resembling black hole, green"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 131, "name": "Fiber Field", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_3074.jpg", "description": "macro motion blur, organic fibers, green. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Organic Flow Lines"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "macro motion blur, organic fibers, green"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 132, "name": "Legislature Panorama", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/ableg-1.jpg", "description": "elevated B&W cityscape, Alberta Legislature. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "standard_photo"}, {"trait_type": "EOLT Trait", "value": "Observer Frame / Civic Lattice"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "elevated B&W cityscape, Alberta Legislature"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 133, "name": "Sepia Dome", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/_MG_3048_(3).jpg", "description": "sepia-filtered legislature + city. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "standard_photo"}, {"trait_type": "EOLT Trait", "value": "Historic Phase Layer"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "sepia-filtered legislature + city"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 134, "name": "Blue Night Block", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/12622059...o.jpg", "description": "long exposure traffic, blue monochrome. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Cool Phase Flow"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "long exposure traffic, blue monochrome"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 137, "name": "Shelf Cloud", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/bw-152.jpg", "description": "B&W panoramic storm shelf cloud. Human-created work by Laura Curtiss.", "drop": "hand_of_the_artist_archive", "tier": "C", "attributes": [{"trait_type": "Series", "value": "standard_photo"}, {"trait_type": "EOLT Trait", "value": "Atmospheric Boundary / Gust Front"}, {"trait_type": "Tier", "value": "C"}, {"trait_type": "Technique", "value": "B&W panoramic storm shelf cloud"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 138, "name": "The Falcon", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/falcon-122.jpg", "description": "high-contrast B&W bird on chartreuse. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "standard_photo"}, {"trait_type": "EOLT Trait", "value": "Flight Vector / Chirality"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "high-contrast B&W bird on chartreuse"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 139, "name": "Frenesi (Vanitas)", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/painted2.jpg", "description": "impasto-style still life: skull, bottles, pills. Human-created work by Laura Curtiss.", "drop": "temporal_torsion", "tier": "A", "attributes": [{"trait_type": "Series", "value": "painting_hybrid"}, {"trait_type": "EOLT Trait", "value": "Memento Mori / Entropy Study"}, {"trait_type": "Tier", "value": "A"}, {"trait_type": "Technique", "value": "impasto-style still life: skull, bottles, pills"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 140, "name": "The Thought Plume", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/Laura_Curtiss-1-3_(2).jpg", "description": "face merging into swirling energy, mixed media. Human-created work by Laura Curtiss.", "drop": "genesis", "tier": "S", "attributes": [{"trait_type": "Series", "value": "painting_hybrid"}, {"trait_type": "EOLT Trait", "value": "Consciousness Torsion"}, {"trait_type": "Tier", "value": "S"}, {"trait_type": "Technique", "value": "face merging into swirling energy, mixed media"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 141, "name": "Balcony Lights (Archival)", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/balc2.jpg", "description": "B&W night city from balcony, bike silhouette. Human-created work by Laura Curtiss.", "drop": "hand_of_the_artist_archive", "tier": "C", "attributes": [{"trait_type": "Series", "value": "standard_photo"}, {"trait_type": "EOLT Trait", "value": "Observer Vantage"}, {"trait_type": "Tier", "value": "C"}, {"trait_type": "Technique", "value": "B&W night city from balcony, bike silhouette"}, {"trait_type": "Provenance", "value": "Human-created (photography/painting), AI-collaborative processing where noted"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 142, "name": "12622059 10153300344231109 7935614719567067412 O", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/12622059_10153300344231109_7935614719567067412_o.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "standard_photo"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 143, "name": "12694698 10153300344241109 2493020156372013359 O", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/12694698_10153300344241109_2493020156372013359_o.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "standard_photo"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 144, "name": "15111034 10153924570556109 7173293518840287508 O", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/15111034_10153924570556109_7173293518840287508_o.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "standard_photo"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 145, "name": "Img 1986", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_1986.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 146, "name": "Img 1996", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_1996.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 147, "name": "Img 2026", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2026.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 148, "name": "Img 2047", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2047.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 149, "name": "Img 2051", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2051.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 150, "name": "Img 2053", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2053.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 151, "name": "Img 2054", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2054.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 152, "name": "Img 2058", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2058.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 153, "name": "Img 2072", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2072.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 154, "name": "Img 2118", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2118.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 155, "name": "Img 2176", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2176.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 156, "name": "Img 2179", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2179.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 157, "name": "Img 2184", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2184.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 158, "name": "Img 2186", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2186.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 159, "name": "Img 2201", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2201.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 160, "name": "Img 2203", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2203.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 161, "name": "Img 2207", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2207.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 162, "name": "Img 2212", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2212.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 163, "name": "Img 2217", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2217.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 164, "name": "Img 2221", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2221.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 165, "name": "Img 2630", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2630.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 166, "name": "Img 2671", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_2671.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 167, "name": "Img 6471 (2)", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/IMG_6471_(2).jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "long_exposure"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}, {"token_id": 168, "name": "Warpfield", "artist": "Laura Curtiss", "image_master": "artifacts/media/nft_collection/02_masters/warpfield.jpg", "description": "Standard photograph / long exposure archive. Human-created work by Laura Curtiss.", "drop": "observer", "tier": "B", "attributes": [{"trait_type": "Series", "value": "standard_photo"}, {"trait_type": "EOLT Trait", "value": "Emergent Lattice Phase"}, {"trait_type": "Tier", "value": "B"}, {"trait_type": "Technique", "value": "Standard photograph / long exposure archive"}, {"trait_type": "Provenance", "value": "Human-created (photography), AI-collaborative processing"}], "unlockable_vault": ["kb/specs/rare_books/BEARDEN FINAL SECRET OF FREE ENERGY (1).pdf"]}]};
+
+    let collectionData = [];
+    let currentFiltered = [];
+    let currentIndex = 0;
+
+    // Security: Block right-click context menu on images
+    document.addEventListener('contextmenu', function(e) {
+      if (e.target.tagName === 'IMG' || e.target.closest('.nft-img-wrapper') || e.target.closest('.modal-img-container')) {
+        e.preventDefault();
+        alert("Protected Artwork: Copyright © Laura Curtiss. All rights reserved.");
+      }
+    });
+
+    // Security: Block drag-and-drop saving of images
+    document.addEventListener('dragstart', function(e) {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+      }
+    });
+
+    async function loadGallery() {
+      try {
+        const response = await fetch('../exports/eolt_nft_collection_v2.json');
+        const data = await response.json();
+        collectionData = data.tokens;
+      } catch (e) {
+        collectionData = COLLECTION_EMBEDDED.tokens;
+      }
+      currentFiltered = collectionData;
+      renderGallery(collectionData);
+    }
+
+    function renderGallery(tokens) {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+
+      tokens.forEach((token, index) => {
+        let imgPath = '../../' + token.image_master;
+        let vaultPath = '../../' + token.unlockable_vault[0];
+        
+        let tierClass = 'tier-B';
+        if (token.tier === 'S') tierClass = 'tier-S';
+        else if (token.tier === 'A') tierClass = 'tier-A';
+        else if (token.tier === 'C') tierClass = 'tier-C';
+
+        const card = document.createElement('div');
+        card.className = 'nft-card';
+
+        card.innerHTML = `
+          <div class="nft-img-wrapper" onclick="openCarousel(${index})">
+            <span class="tier-badge ${tierClass}">Tier ${token.tier}</span>
+            <img src="${imgPath}" alt="${token.name}" loading="lazy" onerror="this.src='../../artifacts/media/nft_collection/02_masters/Pearlpano4.jpg'">
+          </div>
+          <div class="nft-content">
+            <h3 class="nft-title">${token.name}</h3>
+            <div class="nft-artist">By ${token.artist} (Token #${token.token_id})</div>
+            <div class="nft-meta">
+              <div><strong>Series:</strong> ${token.attributes[0].value}</div>
+              <div><strong>EOLT Trait:</strong> ${token.attributes[1].value}</div>
+            </div>
+            <div class="action-row">
+              <button class="carousel-btn" onclick="openCarousel(${index})">🔍 Inspect Full</button>
+              <a href="${vaultPath}" target="_blank" class="vault-link">🔓 Rare Vault</a>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterGallery(dropType, event) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (event && event.target) {
+        event.target.classList.add('active');
+      }
+
+      if (dropType === 'all') {
+        currentFiltered = collectionData;
+      } else if (dropType === 'genesis') {
+        currentFiltered = collectionData.filter(t => t.drop === 'genesis');
+      } else if (dropType === 'temporal_torsion') {
+        currentFiltered = collectionData.filter(t => t.drop === 'temporal_torsion');
+      } else if (dropType === 'observer') {
+        currentFiltered = collectionData.filter(t => t.drop === 'observer');
+      } else if (dropType === 'hand_of_the_artist') {
+        currentFiltered = collectionData.filter(t => t.drop.includes('hand_of_the_artist') || t.drop === 'hand_of_the_artist');
+      } else {
+        currentFiltered = collectionData.filter(t => t.drop === dropType);
+      }
+      renderGallery(currentFiltered);
+    }
+
+    function openCarousel(filteredIndex) {
+      currentIndex = filteredIndex;
+      updateModalContent();
+      document.getElementById('carouselModal').style.display = 'flex';
+    }
+
+    function closeCarousel() {
+      document.getElementById('carouselModal').style.display = 'none';
+    }
+
+    function updateModalContent() {
+      const token = currentFiltered[currentIndex];
+      document.getElementById('modalImg').src = '../../' + token.image_master;
+      document.getElementById('modalTitle').innerText = token.name + ` (Token #${token.token_id})`;
+      document.getElementById('modalDesc').innerText = `${token.description} | Trait: ${token.attributes[1].value}`;
+      document.getElementById('modalCounter').innerText = `${currentIndex + 1} / ${currentFiltered.length}`;
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % currentFiltered.length;
+      updateModalContent();
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + currentFiltered.length) % currentFiltered.length;
+      updateModalContent();
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (document.getElementById('carouselModal').style.display === 'flex') {
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'Escape') closeCarousel();
+      }
+    });
+
+    loadGallery();
+  </script>
+</body>
+</html>
