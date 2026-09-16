@@ -329,6 +329,7 @@
     <div class="contract-badge">
       ⛓️ Smart Contract: <strong>0xd9145CCE52D386f254917e481eB44e9943F39138</strong> (Base / Arbitrum)
     </div>
+    <div style="font-size: 0.75rem; color: var(--text-muted); max-width: 600px; margin: -0.5rem auto 0 auto;">Click 💎 "Acquire / Vault" on any piece below for step-by-step purchase instructions.</div>
   </header>
 
   <div class="filters">
@@ -530,6 +531,17 @@
         <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.3rem;">SMART CONTRACT ADDRESS (Base / Arbitrum):</div>
         <div style="font-family: monospace; color: var(--emerald); font-size: 0.9rem; word-break: break-all; margin-bottom: 0.8rem;">0xd9145CCE52D386f254917e481eB44e9943F39138</div>
         <button onclick="copyContract()" style="width: 100%; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 0.5rem; border-radius: 6px; cursor: pointer; font-family: inherit; font-weight: bold; font-size: 0.8rem;">📋 Copy Contract Address</button>
+      </div>
+
+      <div style="background: rgba(251, 191, 36, 0.05); border: 1px solid rgba(251, 191, 36, 0.3); padding: 0.9rem; border-radius: 6px; margin-bottom: 1.5rem;">
+        <div style="font-size: 0.8rem; color: var(--gold); font-weight: bold; margin-bottom: 0.5rem;">🛒 How To Purchase — Step by Step</div>
+        <ol style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 1.1rem;">
+          <li>Install a Web3 wallet (MetaMask or Rabby) and switch its network to <strong>Base</strong> or <strong>Arbitrum</strong>.</li>
+          <li>Fund the wallet with a small amount of ETH on that network (covers the token price + gas).</li>
+          <li>Copy the contract address above and open it on <a href="https://basescan.org/address/0xd9145CCE52D386f254917e481eB44e9943F39138" target="_blank" style="color: var(--accent);">BaseScan</a> (or Arbiscan) to view it directly, or paste it into your wallet's "send/interact" screen.</li>
+          <li>Call the contract's <code style="background: rgba(255,255,255,0.06); padding: 1px 4px; border-radius: 3px;">mint</code> / <code style="background: rgba(255,255,255,0.06); padding: 1px 4px; border-radius: 3px;">purchase</code> function for this token's tier price, and confirm the transaction in your wallet.</li>
+          <li>Once confirmed on-chain, the NFT appears in your wallet automatically — no further steps needed.</li>
+        </ol>
       </div>
 
       <div style="background: rgba(52, 211, 153, 0.05); border: 1px solid rgba(52, 211, 153, 0.3); padding: 0.8rem; border-radius: 6px; font-size: 0.8rem; color: var(--text); line-height: 1.4; margin-bottom: 1.5rem;">
