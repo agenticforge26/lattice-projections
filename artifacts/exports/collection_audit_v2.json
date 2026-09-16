@@ -1,0 +1,1028 @@
+[
+  {
+    "file": "blue-night-block-long-exposure-nft.jpg",
+    "title": "Blue Night Block",
+    "tier": "B",
+    "category": "long_exposure",
+    "eolt_trait": "Cool Phase Flow",
+    "orig_size": [
+      2048,
+      1365
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "second-bridge-study-standard-photo-nft.jpg",
+    "title": "Second Bridge Study",
+    "tier": "B",
+    "category": "standard_photo",
+    "eolt_trait": "Emergent Lattice Phase",
+    "orig_size": [
+      2048,
+      1365
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "third-bridge-study-standard-photo-nft.jpg",
+    "title": "Third Bridge Study",
+    "tier": "B",
+    "category": "standard_photo",
+    "eolt_trait": "Emergent Lattice Phase",
+    "orig_size": [
+      843,
+      561
+    ],
+    "master_size": [
+      2048,
+      1363
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "fractured-cognition-painting-hybrid-nft.jpg",
+    "title": "Fractured Cognition",
+    "tier": "A",
+    "category": "painting_hybrid",
+    "eolt_trait": "Consciousness Torsion / Entropic Profile",
+    "orig_size": [
+      3000,
+      2000
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "nautilus-energy-long-exposure-nft.jpg",
+    "title": "Nautilus Energy",
+    "tier": "B",
+    "category": "long_exposure",
+    "eolt_trait": "Golden Spiral / Fibonacci Lattice",
+    "orig_size": [
+      972,
+      651
+    ],
+    "master_size": [
+      2048,
+      1372
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "sky-sphere-cirrus-drift-circular-projection-nft.jpg",
+    "title": "Sky Sphere Cirrus Drift",
+    "tier": "B",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Zenith Projection / Atmospheric Field",
+    "orig_size": [
+      1936,
+      1936
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "sky-sphere-storm-cell-circular-projection-nft.jpg",
+    "title": "Sky Sphere Storm Cell",
+    "tier": "B",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Zenith Projection / Storm Torsion",
+    "orig_size": [
+      2056,
+      2056
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "sky-sphere-grey-marble-circular-projection-nft.jpg",
+    "title": "Sky Sphere Grey Marble",
+    "tier": "B",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Zenith Projection / Cloud Lattice",
+    "orig_size": [
+      2056,
+      2056
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "sky-sphere-divided-sky-circular-projection-nft.jpg",
+    "title": "Sky Sphere Divided Sky",
+    "tier": "B",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Zenith Projection / Phase Division",
+    "orig_size": [
+      2056,
+      2056
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "sky-sphere-iridescent-drop-circular-projection-nft.jpg",
+    "title": "Sky Sphere Iridescent Drop",
+    "tier": "A",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Projection / Thin-Film Interference",
+    "orig_size": [
+      1936,
+      1936
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "sky-sphere-mirror-atmosphere-circular-projection-nft.jpg",
+    "title": "Sky Sphere Mirror Atmosphere",
+    "tier": "A",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Projection / Reflective Lattice",
+    "orig_size": [
+      2056,
+      2056
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "sky-sphere-verdant-haze-circular-projection-nft.jpg",
+    "title": "Sky Sphere Verdant Haze",
+    "tier": "B",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Projection / Atmospheric Density",
+    "orig_size": [
+      1936,
+      1936
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "sky-sphere-chrome-void-circular-projection-nft.jpg",
+    "title": "Sky Sphere Chrome Void",
+    "tier": "A",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Projection / Iridescent Reflection",
+    "orig_size": [
+      1936,
+      1936
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "flight-over-the-little-planet-circular-projection-nft.jpg",
+    "title": "Flight Over The Little Planet",
+    "tier": "S",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Projection / Avian Flight Vector",
+    "orig_size": [
+      960,
+      960
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "spiral-oculus-circular-projection-nft.jpg",
+    "title": "Spiral Oculus",
+    "tier": "A",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Projection / Architectural Vortex",
+    "orig_size": [
+      2400,
+      2400
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "the-crowd-singularity-circular-projection-nft.jpg",
+    "title": "The Crowd Singularity",
+    "tier": "A",
+    "category": "circular_projection",
+    "eolt_trait": "Carbon-12 Eigenstate / Human Lattice",
+    "orig_size": [
+      681,
+      666
+    ],
+    "master_size": [
+      2048,
+      2003
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "riverline-passage-long-exposure-nft.jpg",
+    "title": "Riverline Passage",
+    "tier": "B",
+    "category": "long_exposure",
+    "eolt_trait": "Emergent Lattice Phase",
+    "orig_size": [
+      3888,
+      2592
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "nightfall-corridor-long-exposure-nft.jpg",
+    "title": "Nightfall Corridor",
+    "tier": "B",
+    "category": "long_exposure",
+    "eolt_trait": "Emergent Lattice Phase",
+    "orig_size": [
+      3888,
+      2592
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "canopy-rush-long-exposure-nft.jpg",
+    "title": "Canopy Rush",
+    "tier": "B",
+    "category": "long_exposure",
+    "eolt_trait": "Organic Phase Smear",
+    "orig_size": [
+      976,
+      651
+    ],
+    "master_size": [
+      2048,
+      1366
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "the-accretion-eye-long-exposure-nft.jpg",
+    "title": "The Accretion Eye",
+    "tier": "A",
+    "category": "long_exposure",
+    "eolt_trait": "Event Horizon / Torsion Ring",
+    "orig_size": [
+      976,
+      651
+    ],
+    "master_size": [
+      2048,
+      1366
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "fiber-field-long-exposure-nft.jpg",
+    "title": "Fiber Field",
+    "tier": "B",
+    "category": "long_exposure",
+    "eolt_trait": "Organic Flow Lines",
+    "orig_size": [
+      976,
+      651
+    ],
+    "master_size": [
+      2048,
+      1366
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "harbor-glow-study-long-exposure-nft.jpg",
+    "title": "Harbor Glow Study",
+    "tier": "B",
+    "category": "long_exposure",
+    "eolt_trait": "Emergent Lattice Phase",
+    "orig_size": [
+      3888,
+      2592
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "the-torn-planet-circular-projection-nft.jpg",
+    "title": "The Torn Planet",
+    "tier": "S",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Stereographic Projection + Torsion Trails",
+    "orig_size": [
+      7500,
+      7500
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "tunnel-of-sky-slave-lake-circular-projection-nft.jpg",
+    "title": "Tunnel Of Sky Slave Lake",
+    "tier": "C",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Projection / Zenith Tunnel",
+    "orig_size": [
+      320,
+      320
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "sketch-of-a-city-long-exposure-nft.jpg",
+    "title": "Sketch Of A City",
+    "tier": "B",
+    "category": "long_exposure",
+    "eolt_trait": "Lattice Extraction",
+    "orig_size": [
+      1600,
+      1067
+    ],
+    "master_size": [
+      2048,
+      1366
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "blue-hour-arteries-long-exposure-nft.jpg",
+    "title": "Blue Hour Arteries",
+    "tier": "S",
+    "category": "long_exposure",
+    "eolt_trait": "Temporal Torsion / Flow Lines",
+    "orig_size": [
+      3908,
+      2602
+    ],
+    "master_size": [
+      2048,
+      1364
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "sepia-dome-standard-photo-nft.jpg",
+    "title": "Sepia Dome",
+    "tier": "A",
+    "category": "standard_photo",
+    "eolt_trait": "Historic Phase Layer",
+    "orig_size": [
+      3888,
+      2592
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "moonbreak-bridge-long-exposure-nft.jpg",
+    "title": "Moonbreak Bridge",
+    "tier": "C",
+    "category": "long_exposure",
+    "eolt_trait": "Lunar Phase Offset",
+    "orig_size": [
+      320,
+      213
+    ],
+    "master_size": [
+      2048,
+      1363
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "legislature-panorama-standard-photo-nft.jpg",
+    "title": "Legislature Panorama",
+    "tier": "A",
+    "category": "standard_photo",
+    "eolt_trait": "Observer Frame / Civic Lattice",
+    "orig_size": [
+      3888,
+      1699
+    ],
+    "master_size": [
+      2048,
+      895
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "civic-planet-circular-projection-nft.jpg",
+    "title": "Civic Planet",
+    "tier": "S",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Stereographic Projection",
+    "orig_size": [
+      3888,
+      3888
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "balcony-lights-archival-standard-photo-nft.jpg",
+    "title": "Balcony Lights Archival",
+    "tier": "C",
+    "category": "standard_photo",
+    "eolt_trait": "Observer Vantage",
+    "orig_size": [
+      320,
+      131
+    ],
+    "master_size": [
+      2048,
+      838
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "rain-grid-long-exposure-nft.jpg",
+    "title": "Rain Grid",
+    "tier": "A",
+    "category": "long_exposure",
+    "eolt_trait": "Stochastic Torsion / Grid Decay",
+    "orig_size": [
+      2048,
+      1124
+    ],
+    "master_size": [
+      2048,
+      1124
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "the-orb-long-exposure-nft.jpg",
+    "title": "The Orb",
+    "tier": "S",
+    "category": "long_exposure",
+    "eolt_trait": "Weyl Curvature Sphere",
+    "orig_size": [
+      2048,
+      1365
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "ghost-in-the-orbits-long-exposure-nft.jpg",
+    "title": "Ghost In The Orbits",
+    "tier": "A",
+    "category": "long_exposure",
+    "eolt_trait": "Observer In The Field",
+    "orig_size": [
+      2048,
+      1203
+    ],
+    "master_size": [
+      2048,
+      1203
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "feather-vortex-long-exposure-nft.jpg",
+    "title": "Feather Vortex",
+    "tier": "A",
+    "category": "long_exposure",
+    "eolt_trait": "Radial Torsion Field",
+    "orig_size": [
+      2048,
+      1365
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "the-falcon-standard-photo-nft.jpg",
+    "title": "The Falcon",
+    "tier": "B",
+    "category": "standard_photo",
+    "eolt_trait": "Flight Vector / Chirality",
+    "orig_size": [
+      1600,
+      1006
+    ],
+    "master_size": [
+      2048,
+      1288
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "the-watchers-ripple-painting-hybrid-nft.jpg",
+    "title": "The Watchers Ripple",
+    "tier": "A",
+    "category": "painting_hybrid",
+    "eolt_trait": "Observer Distortion / Signal Decay",
+    "orig_size": [
+      3000,
+      2000
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "sepia-vortex-jasper-circular-projection-nft.jpg",
+    "title": "Sepia Vortex Jasper",
+    "tier": "A",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Projection + Fractal Texture",
+    "orig_size": [
+      1600,
+      1600
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "purple-span-long-exposure-nft.jpg",
+    "title": "Purple Span",
+    "tier": "C",
+    "category": "long_exposure",
+    "eolt_trait": "Reflection Symmetry / Flow",
+    "orig_size": [
+      320,
+      256
+    ],
+    "master_size": [
+      2048,
+      1638
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "balcony-night-long-exposure-nft.jpg",
+    "title": "Balcony Night",
+    "tier": "C",
+    "category": "long_exposure",
+    "eolt_trait": "Observer Vantage",
+    "orig_size": [
+      240,
+      320
+    ],
+    "master_size": [
+      1536,
+      2048
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "streak-cloud-city-long-exposure-nft.jpg",
+    "title": "Streak Cloud City",
+    "tier": "C",
+    "category": "long_exposure",
+    "eolt_trait": "Temporal Cloud Shear",
+    "orig_size": [
+      320,
+      213
+    ],
+    "master_size": [
+      2048,
+      1363
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "rail-and-river-long-exposure-nft.jpg",
+    "title": "Rail And River",
+    "tier": "C",
+    "category": "long_exposure",
+    "eolt_trait": "Reflection Lattice",
+    "orig_size": [
+      320,
+      256
+    ],
+    "master_size": [
+      2048,
+      1638
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "zoom-burst-mandala-long-exposure-nft.jpg",
+    "title": "Zoom Burst Mandala",
+    "tier": "S",
+    "category": "long_exposure",
+    "eolt_trait": "Radial Torsion Field",
+    "orig_size": [
+      3888,
+      2272
+    ],
+    "master_size": [
+      2048,
+      1197
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "the-globe-city-hall-circular-projection-nft.jpg",
+    "title": "The Globe City Hall",
+    "tier": "A",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Stereographic Projection",
+    "orig_size": [
+      1126,
+      1026
+    ],
+    "master_size": [
+      2048,
+      1866
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "frenesi-vanitas-painting-hybrid-nft.jpg",
+    "title": "Frenesi Vanitas",
+    "tier": "A",
+    "category": "painting_hybrid",
+    "eolt_trait": "Memento Mori / Entropy Study",
+    "orig_size": [
+      1320,
+      960
+    ],
+    "master_size": [
+      2048,
+      1489
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "vortex-summit-circular-projection-nft.jpg",
+    "title": "Vortex Summit",
+    "tier": "S",
+    "category": "circular_projection",
+    "eolt_trait": "E8 Projection + Rotational Torsion",
+    "orig_size": [
+      1600,
+      1600
+    ],
+    "master_size": [
+      2048,
+      2048
+    ],
+    "upscaled": true,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "wave-sky-over-calgary-long-exposure-nft.jpg",
+    "title": "Wave Sky Over Calgary",
+    "tier": "A",
+    "category": "long_exposure",
+    "eolt_trait": "Atmospheric Torsion Waves",
+    "orig_size": [
+      2940,
+      1960
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "the-melting-city-long-exposure-nft.jpg",
+    "title": "The Melting City",
+    "tier": "A",
+    "category": "long_exposure",
+    "eolt_trait": "Vertical Phase Smear",
+    "orig_size": [
+      3751,
+      1953
+    ],
+    "master_size": [
+      2048,
+      1066
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "skeleton-city-long-exposure-nft.jpg",
+    "title": "Skeleton City",
+    "tier": "B",
+    "category": "long_exposure",
+    "eolt_trait": "Lattice Wireframe",
+    "orig_size": [
+      3612,
+      3042
+    ],
+    "master_size": [
+      2048,
+      1725
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "supermoon-over-the-bridge-long-exposure-nft.jpg",
+    "title": "Supermoon Over the Bridge",
+    "tier": "S",
+    "category": "long_exposure",
+    "eolt_trait": "Temporal Integration / Lattice Pulse",
+    "orig_size": [
+      3888,
+      2592
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "bridge-vortex-long-exposure-nft.jpg",
+    "title": "Bridge Vortex",
+    "tier": "A",
+    "category": "long_exposure",
+    "eolt_trait": "Asymmetric Torsion Flow",
+    "orig_size": [
+      3000,
+      2000
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "the-smoke-angel-long-exposure-nft.jpg",
+    "title": "The Smoke Angel",
+    "tier": "A",
+    "category": "long_exposure",
+    "eolt_trait": "Emergent Form / Pareidolia Phase",
+    "orig_size": [
+      3000,
+      2000
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "green-static-portrait-painting-hybrid-nft.jpg",
+    "title": "Green Static Portrait",
+    "tier": "A",
+    "category": "painting_hybrid",
+    "eolt_trait": "Signal Decay / Consciousness Torsion",
+    "orig_size": [
+      2985,
+      1802
+    ],
+    "master_size": [
+      2048,
+      1236
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "untitled-torsion-study-xxi-long-exposure-nft.jpg",
+    "title": "Untitled Torsion Study XXI",
+    "tier": "C",
+    "category": "long_exposure",
+    "eolt_trait": "Emergent Lattice Phase",
+    "orig_size": [
+      3000,
+      2000
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "untitled-torsion-study-xxii-long-exposure-nft.jpg",
+    "title": "Untitled Torsion Study XXII",
+    "tier": "C",
+    "category": "long_exposure",
+    "eolt_trait": "Emergent Lattice Phase",
+    "orig_size": [
+      3000,
+      2000
+    ],
+    "master_size": [
+      2048,
+      1365
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "six-pointed-burst-long-exposure-nft.jpg",
+    "title": "Six Pointed Burst",
+    "tier": "A",
+    "category": "long_exposure",
+    "eolt_trait": "Torsion Duality / Star Defect",
+    "orig_size": [
+      3000,
+      1655
+    ],
+    "master_size": [
+      2048,
+      1130
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  },
+  {
+    "file": "warpfield-standard-photo-nft.jpg",
+    "title": "Warpfield",
+    "tier": "B",
+    "category": "standard_photo",
+    "eolt_trait": "Emergent Lattice Phase",
+    "orig_size": [
+      2516,
+      3864
+    ],
+    "master_size": [
+      1334,
+      2048
+    ],
+    "upscaled": false,
+    "artist": "Laura Curtiss",
+    "provenance": "Human hands + analog capture"
+  }
+]
